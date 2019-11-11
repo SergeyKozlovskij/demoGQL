@@ -2,11 +2,26 @@ package gql.demo.dao.entity;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Rep {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private List<Long> zipCodes;
-    private List<Long> states;
+    @ManyToMany
+    @JoinTable(name="REP_ZIP", joinColumns = @JoinColumn(name="rep_id"), inverseJoinColumns = @JoinColumn(name = "zip_id"))
+    private List<Zip> zipCodes;
+    @ManyToMany
+    @JoinTable(name="REP_STATE", joinColumns = @JoinColumn(name="rep_id"), inverseJoinColumns = @JoinColumn(name = "state_id"))
+    private List<State> states;
 
     public Long getId() {
         return id;
@@ -24,19 +39,19 @@ public class Rep {
         this.name = name;
     }
 
-    public List<Long> getZipCodes() {
+    public List<Zip> getZipCodes() {
         return zipCodes;
     }
 
-    public void setZipCodes(List<Long> zipCodes) {
+    public void setZipCodes(List<Zip> zipCodes) {
         this.zipCodes = zipCodes;
     }
 
-    public List<Long> getStates() {
+    public List<State> getStates() {
         return states;
     }
 
-    public void setStates(List<Long> states) {
+    public void setStates(List<State> states) {
         this.states = states;
     }
 }
