@@ -1,7 +1,7 @@
 type Mutation {
-    createState(name: String, abbrev: String): State
+    createState(name: String, abbrev: String, zips: [inputZip]): State
     createZip(code: String, state: inputState): Zip
-    createRep(name: String, zips: [inputZip], states: [inputState]): Rep
+    createRep(name: String, states: [inputState]): Rep
 }
 type Query {
     state (id: ID): State
@@ -15,16 +15,15 @@ type State {
     id: ID
     name: String
     abbrev: String
+    zips: [Zip]
 }
 type Zip {
     id: ID
     code: String
-    state: State
 }
 type Rep {
     id: ID
     name: String
-    zips: [Zip]
     states: [State]
 }
 
@@ -32,9 +31,9 @@ input inputState {
     id: ID
     name: String
     abbrev: String
+    zips: [inputZip]
 }
 input inputZip {
     id: ID
     code: String
-    state: inputState
 }

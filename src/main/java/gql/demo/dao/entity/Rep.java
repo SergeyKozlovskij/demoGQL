@@ -1,9 +1,11 @@
 package gql.demo.dao.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,19 +19,18 @@ public class Rep {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name="REP_ZIP", joinColumns = @JoinColumn(name="rep_id"), inverseJoinColumns = @JoinColumn(name = "zip_id"))
-    private List<Zip> zipCodes;
-    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Zip> zipCodes = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="REP_STATE", joinColumns = @JoinColumn(name="rep_id"), inverseJoinColumns = @JoinColumn(name = "state_id"))
-    private List<State> states;
+    private List<State> states = new ArrayList<>();
 
     public Rep() {
     }
 
-    public Rep(String name, List<Zip> zipCodes, List<State> states) {
+    public Rep(String name, List<State> states) {
         this.name = name;
-        this.zipCodes = zipCodes;
         this.states = states;
     }
 

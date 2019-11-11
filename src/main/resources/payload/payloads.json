@@ -1,0 +1,55 @@
+ mutation {
+   createRep(name: "petr3",
+     states: [
+       {name: "NewYork" abbrev: "NY"},
+       {name: "Caliphornia" abbrev: "CA" zips:[{code: "90210"}, {code: "90211"}, {code: "90212"}]},
+       {name: "Texas" abbrev: "TX" zips: [{code: " 10215"}]}
+     ]) {
+     id
+     name
+     states {
+       id
+       name
+       abbrev
+       zips {
+         id
+         code
+       }
+     }
+   }
+ }
+
+ {
+   reps {
+     id
+     name
+     states {
+       id
+       name
+       abbrev
+       zips {
+         id
+         code
+       }
+     }
+   }
+ }
+
+ {
+  states {
+   id
+   name
+   abbrev
+   zips {
+     id
+     code
+   }
+ }
+ }
+
+ {
+   zips {
+     id
+     code
+   }
+ }
