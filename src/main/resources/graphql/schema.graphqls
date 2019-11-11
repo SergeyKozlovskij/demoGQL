@@ -1,16 +1,40 @@
-schema {
-    query: Query
-    mutation: Mutation
-}
 type Mutation {
     createState(name: String, abbrev: String): State
+    createZip(code: String, state: inputState): Zip
+    createRep(name: String, zips: [inputZip], states: [inputState]): Rep
 }
 type Query {
     state (id: ID): State
     states: [State]
+    zip (id: ID): Zip
+    zips: [Zip]
+    rep (id: ID): Rep
+    reps: [Rep]
 }
 type State {
     id: ID
     name: String
     abbrev: String
+}
+type Zip {
+    id: ID
+    code: String
+    state: State
+}
+type Rep {
+    id: ID
+    name: String
+    zips: [Zip]
+    states: [State]
+}
+
+input inputState {
+    id: ID
+    name: String
+    abbrev: String
+}
+input inputZip {
+    id: ID
+    code: String
+    state: inputState
 }

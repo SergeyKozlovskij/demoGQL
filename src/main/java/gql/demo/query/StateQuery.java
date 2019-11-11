@@ -1,6 +1,7 @@
 package gql.demo.query;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ public class StateQuery implements GraphQLQueryResolver {
         this.stateService = stateService;
     }
 
-    public State getState(Long id) {
+    public Optional<State> getState(Long id) {
         return stateService.findById(id);
     }
 

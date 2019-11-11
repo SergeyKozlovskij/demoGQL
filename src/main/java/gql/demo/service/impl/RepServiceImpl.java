@@ -1,6 +1,7 @@
 package gql.demo.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,8 @@ public class RepServiceImpl implements RepService {
     }
 
     @Override
-    public Rep findById(Long id) {
-        return repRepository.getOne(id);
+    public Optional<Rep> findById(Long id) {
+        return repRepository.findById(id);
     }
 
     @Override
