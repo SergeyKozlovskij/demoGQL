@@ -13,6 +13,14 @@ public class State {
     private String name;
     private String abbrev;
 
+    public State() {
+    }
+
+    public State(String name, String abbrev) {
+        this.name = name;
+        this.abbrev = abbrev;
+    }
+
     public Long getId() {
         return id;
     }

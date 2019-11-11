@@ -1,0 +1,16 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+type Mutation {
+    createState(name: String, abbrev: String): State
+}
+type Query {
+    state (id: ID): State
+    states: [State]
+}
+type State {
+    id: ID
+    name: String
+    abbrev: String
+}
